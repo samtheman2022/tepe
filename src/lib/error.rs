@@ -26,7 +26,7 @@ impl Error {
     /// Prints error to stderr and exits the program.
     pub fn exit(self) {
         eprintln!("{}", self);
-        std::process::exit(1);
+        std::process::exit(0);
     }
 }
 
@@ -91,7 +91,7 @@ impl<T, E> CliExit<T> for Result<T, E> {
             Ok(t) => t,
             Err(_e) => {
                 eprintln!("{}", message);
-                std::process::exit(1);
+                std::process::exit(0);
             }
         }
     }
@@ -103,7 +103,7 @@ impl<T> CliExit<T> for Option<T> {
             Some(t) => t,
             None => {
                 eprintln!("{}", message);
-                std::process::exit(1);
+                std::process::exit(0);
             }
         }
     }
